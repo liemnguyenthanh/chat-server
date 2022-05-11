@@ -17,7 +17,7 @@ function SocketIO(server) {
                 let new_user = await User.findOne({ _id: user_id })
                 if (new_user) {
                     users.push(new_user)
-                    io.broadcast.to(room_id).emit('USERS_ROOM', { users });
+                    //io.broadcast.to(room_id).emit('USERS_ROOM', { users });
                 }
             }
         });
