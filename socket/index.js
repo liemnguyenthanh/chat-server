@@ -18,15 +18,15 @@ function SocketIO(server) {
                     users.push(new_user)
                 }
             }
-            var clients = io.sockets.adapter.rooms[room_id]
-            io.to(room_id).emit('USERS_ROOM', { users, clients });
+            io.to(room_id).emit('USERS_ROOM', { users });
         });
 
-        socket.on('SEND_MESSAGE', (message, callback) => {
+
+        socket.on('SEND_MESSAGE', async (message, callback) => {
             const { sender, room_id } = message
             if (sender) {
                 let new_message = new Message(message);
-                
+                await new_message.save()
                 io.to(room_id).emit('NEW_MESSAGE', new_message);
 
             }

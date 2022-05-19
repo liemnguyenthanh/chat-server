@@ -9,6 +9,7 @@ const server = http.createServer(app);
 
 import userRoutes from "./routers/user.js";
 import messageRoutes from "./routers/messages.js";
+import roomRoutes from "./routers/room.js";
 import { mongoose } from 'mongoose';
 import bodyParser from 'body-parser';
 
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use("/users", userRoutes);
 app.use("/messages", messageRoutes);
+app.use("/room",roomRoutes);
 
 SocketIO(server)
 
