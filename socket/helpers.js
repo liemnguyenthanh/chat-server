@@ -14,7 +14,6 @@ const GenerateMessage = (user , message,message_id ,message_type , attachments,)
 const MessageJoinRoom = (user) =>{
     let data = 
     { user: 'admin', 
-     
       message_type : 2 ,
       timestamp : getTimeStamp()     
     }
