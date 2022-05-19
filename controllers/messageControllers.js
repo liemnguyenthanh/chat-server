@@ -20,3 +20,11 @@ export const getMessagesListRoom = async (req, res) => {
       res.status(409).json({ success: false, message: error.message });
     }
   };
+
+export const saveMessage = async (req, res) => {
+  try {
+    console.log(req);
+  } catch (error) {
+    res.status(409).json({ success: false, message: error.message });
+  }
+}
