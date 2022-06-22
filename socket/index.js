@@ -19,7 +19,6 @@ function SocketIO(server) {
                     users.push(data)
                 }
                 io.emit('USERS_ROOM', { users });
-                
             }
         });
         
@@ -55,7 +54,9 @@ function SocketIO(server) {
                 let new_message = new Message(message);
                 //await new_message.save()
                 let room = users.find(a => a.user_id == room_id)
-                io.to(room.socket_id).to(socket.id).emit('NEW_MESSAGE', new_message);
+                let users_get_message = [socket.id]
+                if(room) users_get_message.push(room.socket_id)
+                users_get_message.forEach(item  => io.to(item).emit('NEW_MESSAGE', new_message));
             }
             
         });
